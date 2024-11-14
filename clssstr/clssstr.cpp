@@ -1,4 +1,5 @@
 #include <iostream>
+#include<Windows.h>
 using namespace std;
 
 void analyzePath(const string& path) {
@@ -34,6 +35,9 @@ void analyzePath(const string& path) {
 }
 
 int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    
     analyzePath("F:\\HTML_P34\\menuuu_p34_3\\lesson5_homework\\ex1.png");
     return 0;
 }
