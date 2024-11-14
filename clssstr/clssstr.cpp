@@ -1,28 +1,39 @@
-﻿#include <iostream>
+#include <iostream>
 using namespace std;
-void StR(string str) {
-    cout << "F:\\HTML_P34\\menuuu_p34_3\\lesson5_homework\\ex1.png" << endl;
-    if (str.rfind("\\") == str.length()) {
-        cout << "";
+
+void analyzePath(const string& path) {
+    cout << "Шлях до файлу: " << path << endl;
+    
+    size_t lslash = path.rfind("\\");
+    if (lslash == string::npos) {
+        cout << "\nШлях некоректний!" << endl;
+        return;
     }
-    else {
-        cout << "\nPath without file name: ";
-        for (short i = 0; i < str.rfind("\\"); i++) {
-            cout << str[i];
-        }
+
+    cout << "\nШлях без імені файлу: ";
+    for (size_t i = 0; i < lslash; i++) {
+        cout << path[i];
     }
-    cout << endl << "\nLast name folder in path: ";
-    for (short i = str.rfind("\\", str.rfind("\\") - 1) + 1; i < str.rfind("\\"); i++) {
-        cout << str[i];
+
+    size_t seclslash = path.rfind("\\", lslash - 1);
+    cout << endl << "\nОстання папка в шляху: ";
+    for (size_t i = seclslash + 1; i < lslash; i++) {
+        cout << path[i];
     }
-    cout << endl << "\nFile name with extension: " << str.substr(str.rfind("\\") + 1) << endl;
-    cout << "\nExtension file name: " << str.substr(str.rfind(".")) << endl;
-    cout << "\nFile name without extension: ";
-    for (short i = str.rfind("\\") + 1; i < str.rfind("."); i++) {
-        cout << str[i];
+
+    cout << endl << "\nІм'я файлу з розширенням: " << path.substr(lslash + 1) << endl;
+    
+    size_t dot = path.rfind(".");
+    cout << "\nРозширення файлу: " << path.substr(dot) << endl;
+
+    cout << "\nІм'я файлу без розширення: ";
+    for (size_t i = lslash + 1; i < dot; i++) {
+        cout << path[i];
     }
+    cout << endl;
 }
-int main()
-{
-    StR("F:\\HTML_P34\\menuuu_p34_3\\lesson5_homework\\ex1.png");
+
+int main() {
+    analyzePath("F:\\HTML_P34\\menuuu_p34_3\\lesson5_homework\\ex1.png");
+    return 0;
 }
